@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "planName": {
+      "value": "asp-resume-prod-uks-001"
+    },
+    "functionName": {
+      "value": "func-resume-prod-uks-001"
+    },
+    "region": {
+      "value": "uksouth"
+  }
+} 
+}

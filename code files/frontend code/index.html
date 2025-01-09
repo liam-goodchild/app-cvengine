@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Liam Goodchild - Portfolio</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .list-inline-item {
+                display: inline-block;
+                margin-right: 100px;
+            }
+    
+            .skill-icon {
+                width: auto;
+                height: 65px;
+                vertical-align: middle;
+            }
+
+            .certificate-icon {
+                width: auto;
+                height: 90px;
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Liam Goodchild</span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/profile.png" alt="..." /></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Certifications and Education</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills"> Keys Skills</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">References</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Personal Projects</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- About-->
+            <section class="resume-section" id="about">
+                <div class="resume-section-content">
+                    <div class="subheading mb-5">
+                        <p class="visitor-count mb-5">You are visitor number: <span id="visitorCount">Loading...</span></p>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                const functionUrl = 'https://func-resume-prod-uks-001.azurewebsites.net/api/UpdateVisitorCount?';
+                    
+                                fetch(functionUrl)
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error('Network response was not ok');
+                                        }
+                                        return response.json();
+                                    })
+                                    .then(data => {
+                                        document.getElementById('visitorCount').innerText = data.visitorCount;
+                                    })
+                                    .catch(error => {
+                                        console.error('There was a problem with the fetch operation:', error);
+                                        document.getElementById('visitorCount').innerText = 'Error fetching visitor count';
+                                    });
+                            });
+                        </script>
+                    </div>
+                    <h1 class="mb-0">
+                        Liam
+                        <span class="text-primary">Goodchild</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        Birmingham · 07398342855 ·
+                        <a href="mailto:liamgoodchild12@hotmail.co.uk">liamgoodchild12@hotmail.co.uk</a>
+                    </div>
+                    <p class="lead mb-5">As a Microsoft-certified IT professional with a focus on cloud computing, I am passionate about technology and have a solid track record of enhancing innovation and efficiency. My experience in cloud migrations and streamlining workflows, paired with my strong problem-solving skills and collaborative nature, allows me to contribute effectively to dynamic teams. I am eager to take on roles that push me to utilize advanced cloud technologies to improve organizational performance and deliver exceptional service.</p>
+                    <div class="social-icons">
+                        <a class="social-icon" href="https://www.linkedin.com/in/liam-goodchild-507690249/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="social-icon" href="https://github.com/liam-goodchild" target="_blank"><i class="fab fa-github"></i></a>
+                        <a class="social-icon" href="https://cloudcvchallenge.blob.core.windows.net/cv-and-certs/Liam%20Goodchild%20CV.pdf?sp=r&st=2024-08-01T19:51:16Z&se=2025-11-06T04:51:16Z&spr=https&sv=2022-11-02&sr=b&sig=sSz8J3RXGhpsixlR%2F58sH3cF5DLn1iksVba2CmDH6tc%3D" target="_blank"><i class="fas fa-file-download"></i></a>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Experience-->
+            <section class="resume-section" id="experience">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Experience</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Redcentric</h3>
+                            <div class="subheading mb-0">Microsoft Engineer</div>
+                            <p>September 2024 - Present</p>
+                            <ul>
+                                <li>Coming soon...</li>
+                            <ul>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Marks & Clerk</h3>
+                            <div class="subheading mb-0">2nd Line Engineer</div>
+                            <p>October 2023 - September 2024</p>
+                            <ul>
+                                <li>Deployed, managed and optimized Azure resources using PowerShell, Bicep and ARM templates.</li>
+                                <li>Provided expert technical support for M365 issues (SharePoint, Exchange, Intune)</li>
+                                <li>Led vulnerability management efforts, remediating 160,000 vulnerabilities in preparation for Cyber Essentials.</li>
+                                <li>Developed and implemented hardening strategies based on CIS benchmark results, enhancing the security posture of both Windows client and server operating systems.</li>
+                                <li>Administered Windows Server 2016/19/22 environments, managing AD, GPO, SCCM, DHCP, and DNS.</li>
+                                <li>Managed patch deployment across laptops and business critical servers, ensuring seamless application of Windows, Office, and third-party updates.</li>
+                                <li>Delivered expert 2nd line support for applications, hardware, and software across key UK and European locations, ensuring high availability and reliability of IT services, and effectively resolving complex issues.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Midland Heart</h3>
+                            <div class="subheading mb-0">1st Line Engineer</div>
+                            <p>December 2022 - October 2023</p>
+                            <ul>
+                                <li>Assisted the transition from SCCM to Intune and managed Windows machine deployment and maintenance and implemented device management strategies for Apple and Samsung devices.</li>
+                                <li>Provided 1st and 2nd line support for hardware, software, and AV issues, and acted as a critical escalation point for complex technical problems.</li>
+                                <li>Streamlined Active Directory and Exchange Online with PowerShell and supported Windows Server infrastructure.</li>
+                                <li>Designed and implemented a comprehensive onboarding program for new IT team members, significantly reducing ramp-up time and achieving 100% positive feedback from participants.</li>
+                            <ul>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Keys Group</h3>
+                            <div class="subheading mb-0">IT Support Technician Apprentice</div>
+                            <p>October 2022 - December 2022</p>
+                            <ul>
+                                <li>1st Line support, documented issues, collaborated with third-party specialists, managed IT assets, and achieved a 96% resolution rate, enhancing system reliability.</li>
+                            </ul>
+                            <ul>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Good News Plastering</h3>
+                            <div class="subheading mb-0">General Tradesman</div>
+                            <p>September 2016 - October 2022</p>
+                            <ul>
+                                <li>Performed plumbing, electrical, painting, plastering, and fittings; resolved complex issues; maintained safety standards; completed over 200 projects with high client satisfaction.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <section class="resume-section" id="education">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Certifications and Education</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Certifications</h3>
+                            <div class="subheading mb-0">Microsoft & CompTIA</div>
+                            <p>View official certificates by clicking the icons below.</p>
+                            <ul class="list-inline dev-icons">
+                                <li class="list-inline-item">
+                                    <a href="https://learn.microsoft.com/api/credentials/share/en-gb/LiamGoodchild-3840/C6E977069357B38E?sharingId=26CB79493AD6E1BB" target="_blank">
+                                        <img src="assets/img/AZ104 Logo.png" alt="AZ104" class="certificate-icon">
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://www.credly.com/badges/6dcf0bd4-d7e9-4ee2-a7bc-b2cb5a6baecd/linked_in_profile" target="_blank">
+                                        <img src="assets/img/CompTIA Security+ Logo.png" alt="CompTIA Security+" class="certificate-icon">
+                                    </a>
+                                </li> 
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="https://www.credly.com/badges/6dcf0bd4-d7e9-4ee2-a7bc-b2cb5a6baecd/linked_in_profile" target="_blank">
+                                        <img src="assets/img/CompTIA Network+ Logo.png" alt="CompTIA Network+" class="certificate-icon">
+                                    </a>
+                                </li> 
+                                <li class="list-inline-item">
+                                    <a href="https://www.credly.com/badges/77550b25-5bcd-4f3e-9bb0-a9123d7960a7/linked_in_profile" target="_blank">
+                                        <img src="assets/img/CompTIA A+ Logo.png" alt="CompTIA A+" class="certificate-icon">
+                                    </a>
+                                </li>         
+                            </ul> 
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between">
+                        <div class="flex-grow-1">
+                            <h3 class="mb-0">Formal Education (GCSE)</h3>
+                            <div class="subheading mb-3">Dame Elizabeth Cadbury Technology College</div>
+                            <ul>
+                                <li>Mathematics - A</li>
+                                <li>Engineering - B</li>
+                                <li>Resistant Materials - B</li>
+                                <li>Systems and Control - B</li>
+                                <li>Physics - B</li>
+                                <li>Chemistry - B</li>
+                                <li>English Literature - B</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Skills-->
+            <section class="resume-section" id="skills">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Skills</h2>
+                    <div class="subheading mb-3">Technology Platforms & Tools</div>
+                    <ul class="list-inline dev-icons">
+                        <li class="list-inline-item"><img src="assets/img/Bicep Logo.png" alt="Microsoft 365" class="skill-icon"></li>
+                        <li class="list-inline-item"><img src="assets/img/Microsoft 365.png" alt="Microsoft 365" class="skill-icon"></li>
+                        <li class="list-inline-item"><img src="assets/img/Azure Logo.png" alt="Azure" class="skill-icon"></li>
+                        <li class="list-inline-item"><img src="assets/img/Windows Logo.png" alt="Microsoft Office" class="skill-icon"></li>
+                        <li class="list-inline-item"><img src="assets/img/PowerShell.png" alt="PowerShell" class="skill-icon"></li>
+                        <li class="list-inline-item"><img src="assets/img/Python Logo.png" alt="PowerShell" class="skill-icon"></li>
+                        <li class="list-inline-item"><img src="assets/img/VMWare.jpg" alt="PowerShell" class="skill-icon"></li>
+                        <li class="list-inline-item"><img src="assets/img/Avaya Logo.png" alt="Avaya" class="skill-icon"></li>
+                    </ul>
+                    <div class="subheading mb-3">Proficiencies</div>
+                    <ul class="fa-ul mb-0">
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            IaC (Bicep, ARM templates)
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Microsoft 365 Administration (Exchange Online, Intune)
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Azure Administration (Entra, Storage Accounts, Recovery Service Vaults)
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Windows Server 2016, 2019 & 2022 (AD, GPO, SCCM, DHCP, DNS)
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Scripting (PowerShell, Python)
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Vulnerability Management & SIEM solutions
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            Virtualization (VMWare vCenter, Hyper-V)
+                        </li>
+                        <li>
+                            <span class="fa-li"><i class="fas fa-check"></i></span>
+                            VoIP (Avaya, Mitel)
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Interests-->
+            <section class="resume-section" id="interests">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">References</h2>
+                        <h3 class="mb-0"><a href="https://www.linkedin.com/in/joe-higgins-49435928/" target="_blank">Joe Higgins</a></h3>
+                            <div class="subheading mb-3">Service Desk Team Leader - Marks & Clerk</div>
+                            <p>I’m happy to recommend Liam, who has been a key part of our team at Marks & Clerk. He has consistently provided excellent support, solving technical issues efficiently and ensuring smooth operations. He’s skilled, reliable, and communicates technical solutions clearly. His proactive approach and ability to handle pressure have made him a valuable asset to the team. I’m confident Liam will continue to excel in any future IT role he takes on.</p>
+                        <h3 class="mb-0"><a href="https://www.linkedin.com/in/anne-marie-eaton-00499288/" target="_blank">Anne-Marie Eaton</a></h3>
+                            <div class="subheading mb-3">IT Service Desk Manager - Midland Heart</div>
+                            <p>I’m pleased to recommend Liam, who has been an excellent 1st Line Engineer at Midland Heart. He consistently delivers effective IT support, quickly resolves technical issues, and communicates solutions clearly. Liam is reliable, proactive, and works well under pressure. He’s been a great asset to our team, and I’m confident he’ll excel in any future role.</p>
+                        <h3 class="mb-0"><a href="https://www.linkedin.com/in/shabaz-azeem-abb84891/" target="_blank">Shabaz Azeem</a></h3>
+                            <div class="subheading mb-3">Support Desk Manager - Keys Group</div>
+                            <p>Liam excels in IT support with strong problem-solving skills and a deep understanding of various systems. He consistently resolves complex issues efficiently and communicates technical information clearly. Users appreciate his friendly, patient demeanor. A great team player, Liam's enthusiasm and dedication make him a valuable asset. His contributions at Keys were invaluable and highly appreciated.</p>
+                        <h3 class="mb-0"><a href="https://www.linkedin.com/in/daniel-nash-12003467/" target="_blank">Daniel Nash</a></h3>
+                            <div class="subheading mb-3">Information Technology Support Manager - Keys Group</div>
+                            <p>Liam has shown a remarkable work ethic and positive attitude. His technical skills are top-notch, enabling him to solve complex problems efficiently. He is approachable and always ready to help, making him a valuable team member. Liam's eagerness to learn and adapt to new technologies is impressive. I highly recommend him for any role requiring technical expertise and a proactive approach to learning and development.</p>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Awards-->
+            <section class="resume-section" id="awards">
+                <div class="resume-section-content">
+                <h2 class="mb-5">Personal Projects</h2>
+                <ul>
+                    <li>Coming soon...</li>
+                </ul>
+                </div>
+            </section>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
