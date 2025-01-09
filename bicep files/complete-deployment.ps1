@@ -1,9 +1,9 @@
 # Define the list of PowerShell scripts in order
 $scripts = @(
-    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\frontend\storage account\initial-storage-account-deployment.ps1",
-    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\frontend\content delivery network\initial-cdn-deployment.ps1",
-    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\backend\cosmosdb\initial-cosmosdb-deployment.ps1"
-    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\backend\function\initial-function-deployment.ps1"
+    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\bicep files\frontend deployment\storage account\initial-storage-account-deployment.ps1",
+    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\bicep files\frontend deployment\content delivery network\initial-cdn-deployment.ps1",
+    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\bicep files\backend deployment\cosmosdb\initial-cosmosdb-deployment.ps1"
+    "C:\Users\lgoodchild-a\Documents\Cloud Resume Challenge v2\bicep files\backend deployment\function\initial-function-deployment.ps1"
 )
 
 # Loop through each script and execute it
