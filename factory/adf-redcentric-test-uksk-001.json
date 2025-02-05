@@ -1,0 +1,9 @@
+{
+	"name": "adf-redcentric-test-uksk-001",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "fedbb02f-399d-4a2f-b64f-112d00065b0c",
+		"tenantId": "bcfa57b3-7ca9-479a-bd62-2d2894d69ee4"
+	}
+}
