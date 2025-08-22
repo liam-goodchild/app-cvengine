@@ -58,11 +58,10 @@
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
                     <div class="subheading mb-5">
-                        <p class="visitor-count mb-5">You are visitor number: <span id="visitorCount">Loading...</span></p>
+                        <p class="visitor-count mb-5">You are visitor number: <span id="visitorCount"></span></p>
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
-                                const functionUrl = "/api/hit";
-                    
+                                const functionUrl = "/api/UpdateVisitorCount";
                                 fetch(functionUrl)
                                     .then(response => {
                                         if (!response.ok) {
