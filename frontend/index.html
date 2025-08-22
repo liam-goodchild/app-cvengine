@@ -61,7 +61,7 @@
                         <p class="visitor-count mb-5">You are visitor number: <span id="visitorCount">Loading...</span></p>
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
-                                const functionUrl = 'https://func-resume-prod-uks-001.azurewebsites.net/api/UpdateVisitorCount?';
+                                const functionUrl = "/api/hit";
                     
                                 fetch(functionUrl)
                                     .then(response => {
@@ -299,7 +299,5 @@
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
     </body>
 </html>

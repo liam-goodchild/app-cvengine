@@ -37,4 +37,3 @@ I built this because I wanted a simple, version-controlled way to keep my CV onl
 - Everything under source control
 
 This was designed to do one thing well: keep a CV online, versioned, and automatically updated with minimal overhead.
-
