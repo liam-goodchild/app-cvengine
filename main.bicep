@@ -110,7 +110,7 @@ resource staticWebAppAuth 'Microsoft.Web/staticSites/basicAuth@2024-11-01' = {
 
 resource staticWebAppCustomDomain 'Microsoft.Web/staticSites/customDomains@2024-11-01' = {
   parent: staticWebApp
-  name: 'cvengine.dev.skyhaven.ltd'
+  name: 'cvengine.skyhaven.ltd'
   location: 'West Europe'
   properties: {}
 }
