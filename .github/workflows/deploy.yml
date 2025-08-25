@@ -1,41 +1,139 @@
-name: Azure Static Web Apps CI/CD
-
-on:
+name: Deploy Bicep
+'on':
   push:
     branches: [ dev, main ]
-  pull_request:
-    types: [opened, synchronize, reopened, closed]
-    branches: [ dev, main ]
+    paths:
+      - 'main.bicep'
+      - 'parameters/**'
+      - 'modules/**'
+      - 'functions/**'
+      - 'frontend/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  deploy-dev:
+    if: github.ref == 'refs/heads/dev'
+    name: Deploy to Dev
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    environment: dev
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
         with:
-          submodules: true
-          lfs: false
-      - name: Build And Deploy
-        id: builddeploy
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: What-if (Dev)
+        run: |
+          az deployment group what-if \
+            --resource-group "${{ vars.RESOURCE_GROUP }}" \
+            --template-file main.bicep \
+            --parameters "${{ vars.PARAMETERS_FILE }}" \
+            --name "whatif-${{ github.run_id }}"
+      - name: Deploy (Dev)
+        run: |
+          az deployment group create \
+            --resource-group "${{ vars.RESOURCE_GROUP }}" \
+            --template-file main.bicep \
+            --parameters "${{ vars.PARAMETERS_FILE }}" \
+            --name "deploy-${{ github.run_id }}"
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to Prod
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: What-if (Prod)
+        run: |
+          az deployment group what-if \
+            --resource-group "${{ vars.RESOURCE_GROUP }}" \
+            --template-file main.bicep \
+            --parameters "${{ vars.PARAMETERS_FILE }}" \
+            --name "whatif-${{ github.run_id }}"
+      - name: Deploy (Prod)
+        run: |
+          az deployment group create \
+            --resource-group "${{ vars.RESOURCE_GROUP }}" \
+            --template-file main.bicep \
+            --parameters "${{ vars.PARAMETERS_FILE }}" \
+            --name "deploy-${{ github.run_id }}"
+
+  swa-deploy-dev:
+    if: github.ref == 'refs/heads/dev'
+    name: SWA content deploy (Dev)
+    needs: deploy-dev
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v4
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Ensure SWA CLI extension
+        run: |
+          az extension add -n staticwebapp --yes || az extension update -n staticwebapp
+      - name: Get SWA deployment token (Dev)
+        run: |
+          TOKEN=$(az staticwebapp secrets list \
+            -n "${{ vars.SWA_NAME }}" \
+            -g "${{ vars.RESOURCE_GROUP }}" \
+            --query "properties.apiKey" -o tsv)
+          echo "SWA_TOKEN=$TOKEN" >> $GITHUB_ENV
+      - name: Build & Deploy SWA (Dev)
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_MEADOW_040E1E803 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"
-          app_location: "./frontend"
-          api_location: "./functions"
-          output_location: "."
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+          azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
+          action: upload
+          app_location: frontend
+          api_location: functions
+          output_location: ''
+
+  swa-deploy-prod:
+    if: github.ref == 'refs/heads/main'
+    name: SWA content deploy (Prod)
+    needs: deploy-prod
     runs-on: ubuntu-latest
-    name: Close Pull Request Job
+    environment: prod
     steps:
-      - name: Close Pull Request
-        id: closepullrequest
+      - uses: actions/checkout@v4
+      - name: Azure login (OIDC)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Ensure SWA CLI extension
+        run: |
+          az extension add -n staticwebapp --yes || az extension update -n staticwebapp
+      - name: Get SWA deployment token (Prod)
+        run: |
+          TOKEN=$(az staticwebapp secrets list \
+            -n "${{ vars.SWA_NAME }}" \
+            -g "${{ vars.RESOURCE_GROUP }}" \
+            --query "properties.apiKey" -o tsv)
+          echo "SWA_TOKEN=$TOKEN" >> $GITHUB_ENV
+      - name: Build & Deploy SWA (Prod)
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_MEADOW_040E1E803 }}
-          action: "close"
-          app_location: "./frontend"
+          azure_static_web_apps_api_token: ${{ env.SWA_TOKEN }}
+          action: upload
+          app_location: frontend
+          api_location: functions
+          output_location: ''
