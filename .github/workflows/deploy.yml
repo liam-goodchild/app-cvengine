@@ -16,28 +16,8 @@ permissions:
   contents: read
 
 jobs:
-  detect-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      infra: ${{ steps.filter.outputs.infra }}
-      web:   ${{ steps.filter.outputs.web }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: filter
-        uses: dorny/paths-filter@v3
-        with:
-          filters: |
-            infra:
-              - 'main.bicep'
-              - 'parameters/**'
-              - 'modules/**'
-            web:
-              - 'frontend/**'
-              - 'functions/**'
-
   deploy-dev:
-    needs: detect-changes
-    if: github.ref == 'refs/heads/dev' && needs.detect-changes.outputs.infra == 'true'
+    if: github.ref == 'refs/heads/dev'
     name: Deploy to Dev
     runs-on: ubuntu-latest
     environment: dev
@@ -65,8 +45,7 @@ jobs:
             --name "deploy-${{ github.run_id }}"
 
   deploy-prod:
-    needs: detect-changes
-    if: github.ref == 'refs/heads/main' && needs.detect-changes.outputs.infra == 'true'
+    if: github.ref == 'refs/heads/main'
     name: Deploy to Prod
     runs-on: ubuntu-latest
     environment: prod
@@ -94,9 +73,9 @@ jobs:
             --name "deploy-${{ github.run_id }}"
 
   swa-deploy-dev:
-    needs: detect-changes
-    if: github.ref == 'refs/heads/dev' && needs.detect-changes.outputs.web == 'true'
+    if: github.ref == 'refs/heads/dev'
     name: SWA content deploy (Dev)
+    needs: deploy-dev
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -107,6 +86,9 @@ jobs:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Ensure SWA CLI extension
+        run: |
+          az extension add -n staticwebapp --yes || az extension update -n staticwebapp
       - name: Get SWA deployment token (Dev)
         run: |
           TOKEN=$(az staticwebapp secrets list \
@@ -124,9 +106,9 @@ jobs:
           output_location: ''
 
   swa-deploy-prod:
-    needs: detect-changes
-    if: github.ref == 'refs/heads/main' && needs.detect-changes.outputs.web == 'true'
+    if: github.ref == 'refs/heads/main'
     name: SWA content deploy (Prod)
+    needs: deploy-prod
     runs-on: ubuntu-latest
     environment: prod
     steps:
@@ -137,6 +119,9 @@ jobs:
           client-id: ${{ vars.AZURE_CLIENT_ID }}
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Ensure SWA CLI extension
+        run: |
+          az extension add -n staticwebapp --yes || az extension update -n staticwebapp
       - name: Get SWA deployment token (Prod)
         run: |
           TOKEN=$(az staticwebapp secrets list \

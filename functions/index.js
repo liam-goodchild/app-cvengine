@@ -1,7 +1,7 @@
 const { app } = require("@azure/functions");
 const { CosmosClient } = require("@azure/cosmos");
 const client = new CosmosClient(process.env.CosmosDBConnectionString);
-const container = client.database("VisitorDB").container("VisitorContainer");
+const container = client.database("visitorDatabase").container("visitorContainer");
 const COUNTER_ID = "visitorCount";
 
 app.http("UpdateVisitorCount", {
