@@ -6,6 +6,7 @@ on:
     paths:
       - 'main.bicep'
       - 'parameters/**'
+      - 'modules/**'
       - 'functions/**'
       - 'frontend/**'
       - '.github/workflows/deploy.yml'

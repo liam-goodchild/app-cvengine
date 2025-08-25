@@ -1,17 +1,18 @@
-param zoneName string = 'skyhaven.ltd'
-param zoneRg string   = 'rg-dnsforge-prod-uks-001'
-param zoneSubId string = subscription().subscriptionId
-param subdomain string = 'portfolio'
+param dnsZone string
+param dnsZoneResourceGroup string
+param fqdn string
+param subdomain string
 param project string
 param environment string
 param location string = resourceGroup().location
+param branch string
 var locationShort = locationShortCodes[location]
 var locationShortCodes = {
   uksouth: 'uks'
 }
 
 resource cosmosInstance 'Microsoft.DocumentDB/databaseAccounts@2023-11-15' = {
-  name: 'cosmos-${project}-${environment}-${locationShort}-002'
+  name: 'cosmos-${project}-${environment}-${locationShort}-001'
   location: location
   properties: {
     enableFreeTier: true
@@ -70,7 +71,7 @@ resource cosmosContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/con
 }
 
 resource staticWebApp 'Microsoft.Web/staticSites@2024-11-01' = {
-  name: 'stapp-${project}-${environment}-${locationShort}-002'
+  name: 'stapp-${project}-${environment}-${locationShort}-001'
   location: 'West Europe'
   sku: {
     name: 'Free'
@@ -78,7 +79,7 @@ resource staticWebApp 'Microsoft.Web/staticSites@2024-11-01' = {
   }
   properties: {
     repositoryUrl: 'https://github.com/liam-goodchild/app-cvengine'
-    branch: 'dev'
+    branch: branch
     stagingEnvironmentPolicy: 'Enabled'
     allowConfigFileUpdates: true
     provider: 'GitHub'
@@ -88,7 +89,7 @@ resource staticWebApp 'Microsoft.Web/staticSites@2024-11-01' = {
 
 resource staticWebAppDomain 'Microsoft.Web/staticSites/customDomains@2024-11-01' = {
   parent: staticWebApp
-  name: 'portfolio.skyhaven.ltd'
+  name: fqdn
   properties: {
     validationMethod: 'cname-delegation'
   }
@@ -99,9 +100,9 @@ resource staticWebAppDomain 'Microsoft.Web/staticSites/customDomains@2024-11-01'
 
 module dns 'modules/dns.bicep' = {
   name: 'dns-records'
-  scope: resourceGroup(zoneSubId, zoneRg)
+  scope: resourceGroup(dnsZoneResourceGroup)
   params: {
-    zoneName: zoneName
+    zoneName: dnsZone
     subdomain: subdomain
     target: staticWebApp.properties.defaultHostname
   }
