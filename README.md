@@ -1,6 +1,6 @@
 ## CVEngine – Git-Controlled Online CV
 
-This is a lightweight solution for hosting an online CV using Azure Static Web Apps, Azure Functions, and CosmosDB.
+This is a lightweight solution for hosting an online CV using Azure Static Web Apps, Azure-managed Functions, and CosmosDB.
 
 I built this because I wanted a simple, version-controlled way to keep my CV online without relying on third-party builders or manual uploads. Everything is deployed automatically from Git, making it easy to update and maintain.
 
@@ -10,7 +10,9 @@ I built this because I wanted a simple, version-controlled way to keep my CV onl
 
 - A CosmosDB database tracks visitor counts.
 
-- An Azure Function updates and retrieves the count on page load.
+- An Azure-managed Function updates and retrieves the count on page load.
+
+- A CNAME DNS record is created mapping the Static Web App name to a custom domain.
 
 - All resources are defined in Bicep for consistent, repeatable deployment.
 
