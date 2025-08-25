@@ -6,6 +6,8 @@ param project string
 param environment string
 param location string = resourceGroup().location
 param branch string
+var cosmosKeys = listKeys(cosmosInstance.id, '2023-11-15')
+var cosmosEndpoint = 'AccountEndpoint=${cosmosInstance.properties.documentEndpoint};AccountKey=${cosmosKeys.primaryMasterKey};'
 var locationShort = locationShortCodes[location]
 var locationShortCodes = {
   uksouth: 'uks'
@@ -96,6 +98,14 @@ resource staticWebAppDomain 'Microsoft.Web/staticSites/customDomains@2024-11-01'
   dependsOn: [
     dns
   ]
+}
+
+resource staticWebAppCosmosConnection 'Microsoft.Web/staticSites/config@2024-11-01' = {
+  name: 'functionappsettings'
+  parent: staticWebApp
+  properties: {
+    CosmosDBConnectionString: cosmosEndpoint
+  }
 }
 
 module dns 'modules/dns.bicep' = {
