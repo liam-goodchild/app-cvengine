@@ -12,7 +12,7 @@ I built this because I wanted a simple, version-controlled way to keep my CV onl
 
 - An Azure-managed Function updates and retrieves the count on page load.
 
-- A CNAME DNS record is created mapping the Static Web App name to a custom domain.
+- A CNAME record is created, mapping the Static Web App name to a custom domain.
 
 - All resources are defined in Bicep for consistent, repeatable deployment.
 
